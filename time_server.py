@@ -4,6 +4,7 @@ import datetime
 
 
 def get_time_offset():
+    """Parse config file and return offset"""
     with open('config.txt', 'r') as config:
         try:
             return int(config.read())
@@ -12,12 +13,14 @@ def get_time_offset():
 
 
 def get_time(time_offset):
+    """Get time plus offset"""
     official_time = datetime.datetime.now()
     cheated_time = official_time + datetime.timedelta(0, time_offset)
     return str(cheated_time)
 
 
 def start_server(time_offset):
+    """Main server method"""
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
         sock.bind(('localhost', 123))
         while True:

@@ -2,6 +2,7 @@ import socket
 
 
 def get_time():
+    """Main client method"""
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
         sock.sendto(b'', ('localhost', 123))
         data = sock.recvfrom(1024)
